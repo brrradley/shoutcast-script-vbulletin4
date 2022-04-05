@@ -1,0 +1,74 @@
+.avatar img {
+    border: 0px solid #ccc;
+    border-radius: 10%;
+    width: 75px;
+    height: 75px;
+}
+
+.player_icon {
+    float: left;
+    border: 0px solid;
+    border-radius: 75%;
+    min-width: 15px;
+    padding: 9px 10px 9px 10px;
+    margin-left: 10px;
+    margin-top: 3px;
+    font-size: 1.6em;
+    cursor: pointer;
+}
+
+.radio_body {
+    float: left;
+    font-size: 1.3em;
+    line-height: 150%;
+    padding: 0px 0px 0px 5px;
+    margin-left: 5px;
+    margin-top: 3px;
+}
+
+.radio_titles {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-top: -2px;
+}
+
+.radio_indicator_listeners {
+    float: left;
+    border: 1px solid;
+    border-radius: 5px;
+    color: #FFF;
+    font-size: 0.7em;
+    padding: 0px 6px 0px 6px;
+}
+
+.radio_user {
+    float: left;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    color: #4f4e4e;
+    font-size: 0.7em;
+    padding: 0px 6px 0px 6px;
+    cursor: pointer;
+}
+
+.radio_connect {
+    float: left;
+    background: #5CB959;
+    color: #FFF;
+    border: 1px solid;
+    border-radius: 5px;
+    padding: 0px 6px 0px 6px;
+    font-size: 0.7em!important;
+    cursor: pointer;
+}
+
+.radio_chat {
+    float: left;
+    color: #4B75DD;
+    border: 1px solid #4B75DD;
+    border-radius: 5px;
+    padding: 0px 6px 0px 6px;
+    font-size: 0.7em!important;
+    cursor: pointer; 
+}

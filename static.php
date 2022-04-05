@@ -1,4 +1,5 @@
 <?php // Remove PHP tags if using within vBulletin plugin
+
 if(THIS_SCRIPT != 'ajax'){ 
 require_once(DIR . '/includes/functions_user.php'); 
 
@@ -54,27 +55,23 @@ $sctrack['version'] = (string) $stats->VERSION[0];
 if(strtolower(substr($sctrack['title'], 0, 7)) == 'live - '){
 // Connection is live
     $sctrack['state'] = '#B96259'; // Font color: red
-    $sctrack['bkstate'] = 'forum-alt-red.png'; 
-    $sctrack['br'] = 'none'; 
-    $sctrack['br2'] = ''; 
+    $sctrack['bkstate'] = 'forum-alt-red.png'; // Image background (red)
     $sctrack['srcstat'] = '<i class="fa fa-rocket" aria-hidden="true"></i> <b> LIVE</b>'; 
-    $sctrack['title'] = substr($sctrack['title'], 7); 
-        $tmp = explode(" - ", $sctrack['title']); 
-        $newtmp = explode("_", $tmp[1]); 
+    $sctrack['title'] = substr($sctrack['title'], 7);  // Removes the "live - " from the title
+        $tmp = explode(" - ", $sctrack['title']); // splits the title into 2 pieces at " - "
+        $newtmp = explode("_", $tmp[1]); // splits the result into 2 pieces at "_"
             $sctrack['artist'] = $tmp[0]; 
             $sctrack['track'] = $newtmp[0]; 
             $sctrack['userid'] = $newtmp[1];                 
         $userinfo=fetch_userinfo($sctrack['userid']); 
         $sctrack['userinfo']=$userinfo['username']; 
-}else{ 
+} else { 
 // AutoDJ is active
     $sctrack['state'] = '#D9B241'; // Font color: orange
-    $sctrack['bkstate'] = 'forum-alt.png'; 
-    $sctrack['br'] = ''; 
-    $sctrack['br2'] = 'none'; 
+    $sctrack['bkstate'] = 'forum-alt.png'; // Image background (original)
     $sctrack['srcstat'] = '<i class="fa fa-rss" aria-hidden="true"></i> <b> AUTO</b>'; 
-        $tmp = explode(" - ", $sctrack['title']); 
-        $newtmp = explode("_", $tmp[1]); 
+        $tmp = explode(" - ", $sctrack['title']); // splits the title into 2 pieces at " - "
+        $newtmp = explode("_", $tmp[1]); // splits the result into 2 pieces at "_"
             $sctrack['artist'] = $tmp[0]; 
             $sctrack['track'] = $newtmp[0]; 
             $sctrack['userid'] = $newtmp[1];                 
@@ -82,6 +79,8 @@ if(strtolower(substr($sctrack['title'], 0, 7)) == 'live - '){
         $sctrack['userinfo']=$userinfo['username']; 
 } 
 
-// Change *TEMPLATE* to match your details
+// Change *TEMPLATE* to the template you wish to register within
 vB_Template::preRegister('*TEMPLATE*',array('sctrack' => $sctrack)); 
+
+// Remove PHP tags if using within vBulletin plugin
 ?>
