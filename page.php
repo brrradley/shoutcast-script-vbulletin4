@@ -1,74 +1,76 @@
-        <container>
-            <!-- Finds avatar of the artist that is playing -->
-            <div class="userAvtrar">
-                <div class="avatar" style="float:left;">
-                    <div>
-                        <a href="member.php?u={vb:raw sctrack.userid}">
-                            <img src="image.php?u={vb:raw sctrack.userid}" style="box-shadow: 0px 0px 2px 2px {vb:raw sctrack.state};" />
-                        </a>
-                    </div>
-                </div>
+<!-- Add to your template -->
+
+<container>
+    <!-- Finds avatar of the artist that is playing -->
+    <div class="userAvtrar">
+        <div class="avatar" style="float:left;">
+            <div>
+                <a href="member.php?u={vb:raw sctrack.userid}">
+                    <img src="image.php?u={vb:raw sctrack.userid}" style="box-shadow: 0px 0px 2px 2px {vb:raw sctrack.state};" />
+                </a>
             </div>
-          
-            <div class="player_icon" style="color: {vb:raw sctrack.state}; box-shadow: 0px 0px 3px 3px {vb:raw sctrack.state};" title="Toggle Play" onclick="chPlay2()">
-                &nbsp;
-                <!-- Requires Fontawesome library -->
-                <i class="fa fa-play" aria-hidden="true"></i>
-            </div>
-                    
-            <div class="radio_body">
-                <div class="radio_titles">
-                    <span class="artist">{vb:raw sctrack.artist}</span><br>
-                    <span class="track">{vb:raw sctrack.track}</span>
-                </div>
-  
-                <div style="float: left; margin-top: 6px; margin-left: -52px;">
-                    <div class="livestat" style="float:left;">
-                        <div class="radio_indicator_listeners" style="background: {vb:raw sctrack.state};">
-                            <!-- Connection indicator -->
-                            {vb:raw sctrack.srcstat}
-                            <!-- Spacer -->
-                            &nbsp;&nbsp;|&nbsp;&nbsp;
-                            <!-- Requires Fontawesome library -->
-                            <i class="fa fa-street-view" aria-hidden="true"></i> <b>{vb:raw sctrack.listeners}</b>
-                        </div>
-                    </div>
+        </div>
+    </div>
+    
+    <div class="player_icon" style="color: {vb:raw sctrack.state}; box-shadow: 0px 0px 3px 3px {vb:raw sctrack.state};" title="Toggle Play" onclick="chPlay2()">
+        &nbsp;
+        <!-- Requires Fontawesome library -->
+        <i class="fa fa-play" aria-hidden="true"></i>
+    </div>
             
+    <div class="radio_body">
+        <div class="radio_titles">
+            <span class="artist">{vb:raw sctrack.artist}</span><br>
+            <span class="track">{vb:raw sctrack.track}</span>
+        </div>
+
+        <div style="float: left; margin-top: 6px; margin-left: -52px;">
+            <div class="livestat" style="float:left;">
+                <div class="radio_indicator_listeners" style="background: {vb:raw sctrack.state};">
+                    <!-- Connection indicator -->
+                    {vb:raw sctrack.srcstat}
                     <!-- Spacer -->
-                    <div style="float: left;">&nbsp;</div>
-                    
-                    <div class="radio_user" title="Current artist playing">
-                        <b><a href="member.php?u={vb:raw sctrack.userid}">
-                            <!-- Requires Fontawesome library -->
-                            <i class="fa fa-user" aria-hidden="true"></i> <span class="userinfo">{vb:raw sctrack.userinfo}</span>
-                        </a></b>
-                    </div>
-                    
-                    <!-- Set permissions -->
-                    <vb:if condition="is_member_of($bbuserinfo, 5,6)">
-                        <!-- Spacer -->
-                        <div style="float: left;">&nbsp;</div>
-                        
-                        <div class="radio_connect" style="display: {vb:raw sctrack.br};" title="Connect to stream live">
-                            <a href="faq.php?faq=litecast#faq_howtoconnecttolitecast" style="color: #FFF!important; text-shadow: none!important;">
-                                <!-- Requires Fontawesome library -->
-                                <b><i class="fa fa-sign-in" aria-hidden="true"></i> CONNECT</b>
-                            </a>
-                        </div>
-                    
-                        <!-- Spacer -->
-                        <div style="float: left;">&nbsp;</div>
-                        
-                        <div style="display: {vb:raw sctrack.br2};" title="Chat with stream">
-                            <a href="forumdisplay.php?88-Main-Stage" style="color: #4B75DD!important; text-shadow: none!important;">
-                                <!-- Requires Fontawesome library -->
-                                <b><i class="fa fa-comments-o" aria-hidden="true"></i> CHAT</b>
-                            </a>
-                        </div>
-                    </vb:if>
+                    &nbsp;&nbsp;|&nbsp;&nbsp;
+                    <!-- Requires Fontawesome library -->
+                    <i class="fa fa-street-view" aria-hidden="true"></i> <b>{vb:raw sctrack.listeners}</b>
                 </div>
             </div>
-        </container>
+    
+            <!-- Spacer -->
+            <div style="float: left;">&nbsp;</div>
+            
+            <div class="radio_user" title="Current artist playing">
+                <b><a href="member.php?u={vb:raw sctrack.userid}">
+                    <!-- Requires Fontawesome library -->
+                    <i class="fa fa-user" aria-hidden="true"></i> <span class="userinfo">{vb:raw sctrack.userinfo}</span>
+                </a></b>
+            </div>
+            
+            <!-- Set permissions -->
+            <vb:if condition="is_member_of($bbuserinfo, 5,6)">
+                <!-- Spacer -->
+                <div style="float: left;">&nbsp;</div>
+                
+                <div class="radio_connect" style="display: {vb:raw sctrack.br};" title="Connect to stream live">
+                    <a href="faq.php?faq=litecast#faq_howtoconnecttolitecast" style="color: #FFF!important; text-shadow: none!important;">
+                        <!-- Requires Fontawesome library -->
+                        <b><i class="fa fa-sign-in" aria-hidden="true"></i> CONNECT</b>
+                    </a>
+                </div>
+            
+                <!-- Spacer -->
+                <div style="float: left;">&nbsp;</div>
+                
+                <div style="display: {vb:raw sctrack.br2};" title="Chat with stream">
+                    <a href="forumdisplay.php?88-Main-Stage" style="color: #4B75DD!important; text-shadow: none!important;">
+                        <!-- Requires Fontawesome library -->
+                        <b><i class="fa fa-comments-o" aria-hidden="true"></i> CHAT</b>
+                    </a>
+                </div>
+            </vb:if>
+        </div>
+    </div>
+</container>
 
 <!-- Displays static information before the ajax refresh triggers -->
 <script>
