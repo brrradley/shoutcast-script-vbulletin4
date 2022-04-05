@@ -1,5 +1,7 @@
 <?php // Remove PHP tags if using within vBulletin plugin
 
+// Create plugin. Hook Location: global_bootstrap_init_start
+
 if(THIS_SCRIPT != 'ajax'){ 
 require_once(DIR . '/includes/functions_user.php'); 
 
