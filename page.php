@@ -52,7 +52,8 @@
                 <div style="float: left;">&nbsp;</div>
                 
                 <div class="radio_connect" style="display: {vb:raw sctrack.br};" title="Connect to stream live">
-                    <a href="faq.php?faq=litecast#faq_howtoconnecttolitecast" style="color: #FFF!important; text-shadow: none!important;">
+                    <!-- Add URL to where "Connect" will go to -->
+                    <a href="ADD-URL" style="color: #FFF!important; text-shadow: none!important;">
                         <!-- Requires Fontawesome library -->
                         <b><i class="fa fa-sign-in" aria-hidden="true"></i> CONNECT</b>
                     </a>
@@ -62,7 +63,8 @@
                 <div style="float: left;">&nbsp;</div>
                 
                 <div style="display: {vb:raw sctrack.br2};" title="Chat with stream">
-                    <a href="forumdisplay.php?88-Main-Stage" style="color: #4B75DD!important; text-shadow: none!important;">
+                    <!-- Add URL to where "Chat" will go to -->
+                    <a href="ADD-URL" style="color: #4B75DD!important; text-shadow: none!important;">
                         <!-- Requires Fontawesome library -->
                         <b><i class="fa fa-comments-o" aria-hidden="true"></i> CHAT</b>
                     </a>
