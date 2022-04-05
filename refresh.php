@@ -1,5 +1,7 @@
 <?php // Remove PHP tags if using within vBulletin plugin
 
+// Create plugin. Hook Location: ajax_start
+
 if($_REQUEST['do'] == 'shoutcast2'){  
 
 class radioStats {               
