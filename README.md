@@ -2,7 +2,7 @@
 This project was made for [LiteRECORDS](https://literecords.com)   
 I was going to build this into an XML product. Maybe one day...   
 Support from Dave Jong.   
-<img src="https://literecords.com/public/shoutcast-ajax-ui.png />
+<img src="https://literecords.com/public/shoutcast-ajax-ui.png" />
 
 ---
 ## Software   
