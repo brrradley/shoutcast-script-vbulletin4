@@ -58,6 +58,8 @@ if(strtolower(substr($sctrack['title'], 0, 7)) == 'live - '){
 // Connection is live
     $sctrack['state'] = '#B96259'; // Font color: red
     $sctrack['bkstate'] = 'forum-alt-red.png'; // Image background (red)
+    $sctrack['br'] = 'none'; // Permission display
+    $sctrack['br2'] = ''; // Permission display
     $sctrack['srcstat'] = '<i class="fa fa-rocket" aria-hidden="true"></i> <b> LIVE</b>'; 
     $sctrack['title'] = substr($sctrack['title'], 7);  // Removes the "live - " from the title
         $tmp = explode(" - ", $sctrack['title']); // splits the title into 2 pieces at " - "
@@ -71,6 +73,8 @@ if(strtolower(substr($sctrack['title'], 0, 7)) == 'live - '){
 // AutoDJ is active
     $sctrack['state'] = '#D9B241'; // Font color: orange
     $sctrack['bkstate'] = 'forum-alt.png'; // Image background (original)
+    $sctrack['br'] = 'none'; // Permission display
+    $sctrack['br2'] = ''; // Permission display
     $sctrack['srcstat'] = '<i class="fa fa-rss" aria-hidden="true"></i> <b> AUTO</b>'; 
         $tmp = explode(" - ", $sctrack['title']); // splits the title into 2 pieces at " - "
         $newtmp = explode("_", $tmp[1]); // splits the result into 2 pieces at "_"
