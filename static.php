@@ -35,7 +35,7 @@ class radioStats {
     public function returnStats() { 
         return $this->xml;     
     }         
-} 
+};
 
 // Remember to change *HOST*, *PORT*, *USER*, *PASSWORD* to match your details
 $array = array(); 
@@ -54,36 +54,39 @@ $sctrack['listeners'] = (string) $stats->CURRENTLISTENERS[0];
 $sctrack['version'] = (string) $stats->VERSION[0]; 
 
 // File title formatting
-if(strtolower(substr($sctrack['title'], 0, 7)) == 'live - '){
-// Connection is live
-    $sctrack['state'] = '#B96259'; // Font color: red
-    $sctrack['bkstate'] = 'forum-alt-red.png'; // Image background (red)
-    $sctrack['br'] = 'none'; // Permission display
-    $sctrack['br2'] = ''; // Permission display
-    $sctrack['srcstat'] = '<i class="fa fa-rocket" aria-hidden="true"></i> <b> LIVE</b>'; 
-    $sctrack['title'] = substr($sctrack['title'], 7);  // Removes the "live - " from the title
-        $tmp = explode(" - ", $sctrack['title']); // splits the title into 2 pieces at " - "
-        $newtmp = explode("_", $tmp[1]); // splits the result into 2 pieces at "_"
-            $sctrack['artist'] = $tmp[0]; 
-            $sctrack['track'] = $newtmp[0]; 
-            $sctrack['userid'] = $newtmp[1];                 
-        $userinfo=fetch_userinfo($sctrack['userid']); 
-        $sctrack['userinfo']=$userinfo['username']; 
+if (strtolower(str_contains($sctrack['title'], "[live]"))) { // if title contains [live]
+// connection is live
+    $sctrack['srcstat'] = '<i class="fa fa-rocket" aria-hidden="true"></i> <b> LIVE</b>'; // add LIVE icon and label to page
+    $sctrack['title'] = str_replace("[live]", "", $sctrack['title']); // remove [live] from title
+    $tmp = explode(" - ", $sctrack['title']); // splits the title into 2 pieces at " - "
+    $sctrack['artist'] = $tmp[0]; // display first half of title 'artist'
+    $sctrack['track'] = $tmp[1]; // display second half of title 'track'
+    $sctrack['state'] = '#B96259'; // font color: red
+
+        if (strtolower(str_contains($sctrack['title'], "[id:"))) {
+        // if title contains [id:] (user:id)
+            $str_from = strpos($sctrack['title'], "[id:"); // find start of [id:]
+            $str_to = strpos($sctrack['title'], "]", $str_from); // find end of [id:]
+            $str_id_len = ($str_to) - ($str_from); // find length of [id:]
+                $sctrack['userid'] = substr($sctrack['title'], $str_from + 4, $str_id_len - 4); // declares user:id
+                $str_unf = substr($sctrack['title'], $str_from, $str_id_len + 1); // finds [id:]
+                $sctrack['title'] = str_replace($str_unf, "", $sctrack['title']); // remove [id:] from title
+        } else {
+            $sctrack['userid'] = "19160"; // liteBOT
+        };
 } else { 
 // AutoDJ is active
-    $sctrack['state'] = '#D9B241'; // Font color: orange
-    $sctrack['bkstate'] = 'forum-alt.png'; // Image background (original)
-    $sctrack['br'] = 'none'; // Permission display
-    $sctrack['br2'] = ''; // Permission display
-    $sctrack['srcstat'] = '<i class="fa fa-rss" aria-hidden="true"></i> <b> AUTO</b>'; 
-        $tmp = explode(" - ", $sctrack['title']); // splits the title into 2 pieces at " - "
-        $newtmp = explode("_", $tmp[1]); // splits the result into 2 pieces at "_"
-            $sctrack['artist'] = $tmp[0]; 
-            $sctrack['track'] = $newtmp[0]; 
-            $sctrack['userid'] = $newtmp[1];                 
-        $userinfo=fetch_userinfo($sctrack['userid']); 
-        $sctrack['userinfo']=$userinfo['username']; 
-} 
+    $sctrack['state'] = '#D9B241'; // font color: orange
+    $sctrack['srcstat'] = '<i class="fa fa-rss" aria-hidden="true"></i> <b> AUTO</b>'; // add AUTO icon and label to page
+    $tmp = explode(" - ", $sctrack['title']); // splits the title into 2 pieces at " - "
+        $newtmp = explode("_", $tmp[1]);  // formats user:id from _
+        $sctrack['artist'] = $tmp[0]; // display first half of title 'artist'
+        $sctrack['track'] = $newtmp[0]; // display second half of title 'track'
+        $sctrack['userid'] = $newtmp[1]; // declares user:id
+};
+
+$userinfo=fetch_userinfo($sctrack['userid']); // finds profile for user:id
+$sctrack['userinfo']=$userinfo['username']; // finds username of user:id
 
 // Change *TEMPLATE* to the template you wish to register within
 vB_Template::preRegister('*TEMPLATE*',array('sctrack' => $sctrack)); 

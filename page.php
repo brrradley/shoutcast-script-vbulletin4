@@ -11,13 +11,13 @@
             </div>
         </div>
     </div>
-    
-    <div class="player_icon" style="color: {vb:raw sctrack.state}; box-shadow: 0px 0px 3px 3px {vb:raw sctrack.state};" title="Toggle Play" onclick="chPlay2()">
+
+    <div class="mPlayer2" id="playing2" style="float: left; border: 0px solid; border-radius: 75%; min-width: 15px; color: {vb:raw sctrack.state}; padding: 9px 10px 9px 10px; margin-left: 10px; margin-top: 3px; box-shadow: 0px 0px 3px 3px {vb:raw sctrack.state}; font-size: 1.6em; cursor: pointer;" title="Toggle Play" onclick="chPlay2()">
         &nbsp;
         <!-- Requires Fontawesome library -->
         <i class="fa fa-play" aria-hidden="true"></i>
     </div>
-            
+
     <div class="radio_body">
         <div class="radio_titles">
             <span class="artist">{vb:raw sctrack.artist}</span><br>
@@ -35,22 +35,22 @@
                     <i class="fa fa-street-view" aria-hidden="true"></i> <b>{vb:raw sctrack.listeners}</b>
                 </div>
             </div>
-    
+
             <!-- Spacer -->
             <div style="float: left;">&nbsp;</div>
-            
+
             <div class="radio_user" title="Current artist playing">
                 <b><a href="member.php?u={vb:raw sctrack.userid}">
-                    <!-- Requires Fontawesome library -->
-                    <i class="fa fa-user" aria-hidden="true"></i> <span class="userinfo">{vb:raw sctrack.userinfo}</span>
-                </a></b>
+                        <!-- Requires Fontawesome library -->
+                        <i class="fa fa-user" aria-hidden="true"></i> <span class="userinfo">{vb:raw sctrack.userinfo}</span>
+                    </a></b>
             </div>
-            
+
             <!-- Set permissions -->
             <vb:if condition="is_member_of($bbuserinfo, 5,6)">
                 <!-- Spacer -->
                 <div style="float: left;">&nbsp;</div>
-                
+
                 <div class="radio_connect" style="display: {vb:raw sctrack.br};" title="Connect to stream live">
                     <!-- Add URL to where "Connect" will go to -->
                     <a href="ADD-URL" style="color: #FFF!important; text-shadow: none!important;">
@@ -58,10 +58,10 @@
                         <b><i class="fa fa-sign-in" aria-hidden="true"></i> CONNECT</b>
                     </a>
                 </div>
-            
+
                 <!-- Spacer -->
                 <div style="float: left;">&nbsp;</div>
-                
+
                 <div style="display: {vb:raw sctrack.br2};" title="Chat with stream">
                     <!-- Add URL to where "Chat" will go to -->
                     <a href="ADD-URL" style="color: #4B75DD!important; text-shadow: none!important;">
@@ -85,6 +85,8 @@
                     $('.artist').text(data.artist);
                     $('.state').text(data.state);
                     $('.bkstate').text(data.bkstate);
+                    $('.br').text(data.br);
+                    $('.br2').text(data.br2);
                     $('.track').text(data.track);
                     $('.bitrate').text(data.bitrate + ' kpbs');
                     $('.listeners').text(data.listeners);
@@ -92,10 +94,15 @@
                     $('.userinfo').text(data.userinfo);
                     $('.userid').text(data.userid);
                     $('.aside').text(data.srcstat);
-                    $('.userAvtrar').html
-                        ('<div style="float: left;"><div><a href="member.php?u='+data.userid+'"><img src="image.php?u='+data.userid+'" style="width: 75px; height: 75px; border-radius: 10%; box-shadow: 0px 0px 2px 2px '+data.state+';" alt="" border="0" /></a></div></div>');
-					$('.livestat').html
-                        ('<div style="float: left; border: 1px solid; border-radius: 5px; background: '+data.state+'; color: #FFF; font-size: 0.7em; padding: 0px 6px 0px 6px;">'+data.srcstat+'&nbsp;&nbsp;|&nbsp;&nbsp;<i class="fa fa-street-view" aria-hidden="true"></i> <b>'+data.listeners+'</b></div>');
+                    $('.userAvtrar').html('<div style="float:left;"><div><a href="member.php?u=' + data.userid + '"><img src="image.php?u=' + data.userid + '" style="width: 75px; height: 75px; border-radius: 10%; box-shadow: 0px 0px 2px 2px ' + data.state + ';" alt="" border="0" /></a></div></div>');
+
+                    $('.mPlayer2').css({
+                        'color': '' + data.state + '',
+                        'box-shadow': '0px 0px 3px 3px ' + data.state + ''
+                    });
+
+                    $('.livestat').html('<div style="float: left; border: 1px solid; border-radius: 5px; background: ' + data.state + '; color: #FFF; font-size: 0.7em; padding: 0px 6px 0px 6px;">' + data.srcstat + '&nbsp;&nbsp;|&nbsp;&nbsp;<i class="fa fa-street-view" aria-hidden="true"></i> <b>' + data.listeners + '</b></div>');
+
                 },
                 dataType: "json",
                 complete: poll,
@@ -104,18 +111,19 @@
         }, 10000);
     })();
 </script>
-
 <!-- Ajax refresh triggers updated information -->
-<script language="javascript">
+<script>
     (function poll() {
         setTimeout(function() {
             $.ajax({
-                url: "ajax.php?do=shoutcast2",
+                url: "ajax.php?do=shoutcast",
                 type: "GET",
                 success: function(data) {
                     $('.artist').text(data.artist);
                     $('.state').text(data.state);
                     $('.bkstate').text(data.bkstate);
+                    $('.br').text(data.br);
+                    $('.br2').text(data.br2);
                     $('.track').text(data.track);
                     $('.bitrate').text(data.bitrate + ' kpbs');
                     $('.listeners').text(data.listeners);
@@ -123,10 +131,15 @@
                     $('.userinfo').text(data.userinfo);
                     $('.userid').text(data.userid);
                     $('.aside').text(data.srcstat);
-                    $('.userAvtrar').html
-                        ('<div style="float: left;"><div><a href="member.php?u='+data.userid+'"><img src="image.php?u='+data.userid+'" style="width: 75px; height: 75px; border-radius: 10%; box-shadow: 0px 0px 2px 2px '+data.state+';" alt="" border="0" /></a></div></div>');
-					$('.livestat').html
-                        ('<div style="float: left; border: 1px solid; border-radius: 5px; background: '+data.state+'; color: #FFF; font-size: 0.7em; padding: 0px 6px 0px 6px;">'+data.srcstat+'&nbsp;&nbsp;|&nbsp;&nbsp;<i class="fa fa-street-view" aria-hidden="true"></i> <b>'+data.listeners+'</b></div>');
+                    $('.userAvtrar').html('<div style="float:left;"><div><a href="member.php?u=' + data.userid + '"><img src="image.php?u=' + data.userid + '" style="width: 75px; height: 75px; border-radius: 10%; box-shadow: 0px 0px 2px 2px ' + data.state + ';" alt="" border="0" /></a></div></div>');
+
+                    $('.mPlayer2').css({
+                        'color': '' + data.state + '',
+                        'box-shadow': '0px 0px 3px 3px ' + data.state + ''
+                    });
+
+                    $('.livestat').html('<div style="float: left; border: 1px solid; border-radius: 5px; background: ' + data.state + '; color: #FFF; font-size: 0.7em; padding: 0px 6px 0px 6px;">' + data.srcstat + '&nbsp;&nbsp;|&nbsp;&nbsp;<i class="fa fa-street-view" aria-hidden="true"></i> <b>' + data.listeners + '</b></div>');
+
                 },
                 dataType: "json",
                 complete: poll,
@@ -139,15 +152,12 @@
 <!-- Player controls -->
 <script language="javascript">
     function chPlay2() {
-        if (document.getElementById("playing2").title =="Toggle Play") 
-        {
+        if (document.getElementById("playing2").title == "Toggle Play") {
             audio.play();
             document.getElementById("playing2").title = "Toggle Stop";
             document.getElementById("playing2").innerHTML = '<i class="fa fa-stop" aria-hidden="true"></i>';
             document.getElementById("playing2").style.padding = "11px 11px 11px 13px";
-        }
-            else
-        {
+        } else {
             audio.pause();
             document.getElementById("playing2").title = "Toggle Play";
             document.getElementById("playing2").innerHTML = '&nbsp;<i class="fa fa-play" aria-hidden="true"></i>';
